@@ -1,0 +1,54 @@
+FROM tomcat:v1
+
+MAINTAINER andy andydeny@163.com
+
+RUN wget -qP /opt/tomcat/apache-tomcat-8.5.23/webapps http://mirrors.tuna.tsinghua.edu.cn/jenkins/war-stable/2.73.3/jenkins.war
+RUN yum -y install git
+RUN wget -q https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
+RUN tar zxf apache-maven-3.5.2-bin.tar.gz -C /opt
+ENV M2_HOME=/opt/apache-maven-3.5.2
+ENV PATH=$PATH:$M2_HOME/bin
+
+
+
+
+
+
+
+#install Tomcat
+wget http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz
+tar zxf jdk-8u91-linux-x64.tar.gz
+echo "export JAVA_HOME=/opt/jdk1.8.0_91">>/etc/profile
+echo "export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar">>/etc/profile
+echo "export PATH=$PATH:$JAVA_HOME/bin">>/etc/profile
+source /etc/profile
+
+#install Meven
+tar zxf apache-maven-3.5.0-bin.tar.gz
+echo "export M2_HOME=/opt/apache-maven-3.5.0">>/etc/profile
+echo "export PATH=$PATH:$M2_HOME/bin">>/etc/profile
+source /etc/profile
+
+
+# mkdir /opt/tomcat
+# wget https://mirrors.cnnic.cn/apache/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.tar.gz
+# tar zxvf apache-tomcat-8.5.23.tar.gz -C /opt/tomcat --strip-components=1
+# cd /opt/tomcat
+# chgrp -R tomcat conf
+# chmod g+r conf/*
+# chown -R tomcat webapps/ work/ temp/ logs/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
